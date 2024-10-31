@@ -324,7 +324,7 @@ class http_request {
       * @param size The size in number of char of the value parameter.
      **/
      void set_arg(const char* key, const char* value, size_t size) {
-         cache->unescaped_args[key].push_back(std::string(value, std::min(size, content_size_limit)));
+         cache->unescaped_args[key].push_back(std::string(value, min(size, content_size_limit)));
      }
 
      /**
