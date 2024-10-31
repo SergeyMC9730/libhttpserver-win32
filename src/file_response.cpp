@@ -18,14 +18,33 @@
      USA
 */
 
+#ifdef _WIN32
+#include <io.h>
+
+#define _CRT_INTERNAL_NONSTDC_NAMES 1
+#define lseek _lseek
+#define open _open
+#endif
+
 #include "httpserver/file_response.hpp"
 #include <fcntl.h>
 #include <microhttpd.h>
 #include <stddef.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include <iosfwd>
+
+#ifdef _WIN32
+#if !defined(S_ISREG) && defined(S_IFMT) && defined(S_IFREG)
+#define S_ISREG(m) (((m) & S_IFMT) == S_IFREG)
+#endif
+#if !defined(S_ISDIR) && defined(S_IFMT) && defined(S_IFDIR)
+#define S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)
+#endif
+#endif
 
 struct MHD_Response;
 

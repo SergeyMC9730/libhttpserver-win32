@@ -293,7 +293,7 @@ class http_request {
      std::string method;
      std::map<std::string, std::map<std::string, http::file_info>> files;
      std::string content = "";
-     size_t content_size_limit = std::numeric_limits<size_t>::max();
+     size_t content_size_limit = ULLONG_MAX;
      std::string version;
 
      struct MHD_Connection* underlying_connection = nullptr;

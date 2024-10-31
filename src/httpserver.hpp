@@ -21,8 +21,10 @@
 #ifndef SRC_HTTPSERVER_HPP_
 #define SRC_HTTPSERVER_HPP_
 
+#ifndef _MSC_VER
 #if __cplusplus < 201703L
 #  error("libhttpserver requires C++17 or later.")
+#endif
 #endif
 
 #define _HTTPSERVER_HPP_INSIDE_
